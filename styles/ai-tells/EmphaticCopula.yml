@@ -19,27 +19,31 @@ tokens:
   #
   # Markdown italicized copula verbs - the "manufactured profundity" pattern
   # Note: underscore patterns require space prefix to avoid matching __dunder__ methods
+  #
+  # The trailing guard keeps a snake_case identifier out. This rule reads
+  # the raw file, so in a source file the space-prefixed token also opens
+  # a name such as `_is_candidate_filename`, which no vocabulary exempts.
   - "(?<!\\*)\\*(?!\\*)is(?<!\\*)\\*(?!\\*)"
-  - " _is_"
+  - "\\s+_is_(?![A-Za-z0-9_])"
   - "(?<!\\*)\\*(?!\\*)are(?<!\\*)\\*(?!\\*)"
-  - " _are_"
+  - "\\s+_are_(?![A-Za-z0-9_])"
   - "(?<!\\*)\\*(?!\\*)was(?<!\\*)\\*(?!\\*)"
-  - " _was_"
+  - "\\s+_was_(?![A-Za-z0-9_])"
   - "(?<!\\*)\\*(?!\\*)were(?<!\\*)\\*(?!\\*)"
-  - " _were_"
+  - "\\s+_were_(?![A-Za-z0-9_])"
 
   # Italicized "the" for false emphasis
   - "(?<!\\*)\\*(?!\\*)the(?<!\\*)\\*(?!\\*)"
-  - " _the_"
+  - "\\s+_the_(?![A-Za-z0-9_])"
 
   # Italicized single conjunctions/prepositions for false drama
   # Note: underscore patterns require space prefix to avoid matching __dunder__ methods
   - "(?<!\\*)\\*(?!\\*)and(?<!\\*)\\*(?!\\*)"
-  - " _and_"
+  - "\\s+_and_(?![A-Za-z0-9_])"
   - "(?<!\\*)\\*(?!\\*)not(?<!\\*)\\*(?!\\*)"
-  - " _not_"
+  - "\\s+_not_(?![A-Za-z0-9_])"
   - "(?<!\\*)\\*(?!\\*)or(?<!\\*)\\*(?!\\*)"
-  - " _or_"
+  - "\\s+_or_(?![A-Za-z0-9_])"
 
   # Italicized intensifiers, where the italics do the work the sentence should
   # ("It *actually* works"). Vale 3.17 added an `emphasis` scope that reads
@@ -47,14 +51,14 @@ tokens:
   # rule stays on `raw` until the inline-scope package lands.
   # Note: underscore patterns require space prefix to avoid matching __dunder__ methods
   - "(?<!\\*)\\*(?!\\*)actually(?<!\\*)\\*(?!\\*)"
-  - " _actually_"
+  - "\\s+_actually_(?![A-Za-z0-9_])"
   - "(?<!\\*)\\*(?!\\*)really(?<!\\*)\\*(?!\\*)"
-  - " _really_"
+  - "\\s+_really_(?![A-Za-z0-9_])"
   - "(?<!\\*)\\*(?!\\*)never(?<!\\*)\\*(?!\\*)"
-  - " _never_"
+  - "\\s+_never_(?![A-Za-z0-9_])"
   - "(?<!\\*)\\*(?!\\*)always(?<!\\*)\\*(?!\\*)"
-  - " _always_"
+  - "\\s+_always_(?![A-Za-z0-9_])"
   - "(?<!\\*)\\*(?!\\*)truly(?<!\\*)\\*(?!\\*)"
-  - " _truly_"
+  - "\\s+_truly_(?![A-Za-z0-9_])"
   - "(?<!\\*)\\*(?!\\*)literally(?<!\\*)\\*(?!\\*)"
-  - " _literally_"
+  - "\\s+_literally_(?![A-Za-z0-9_])"

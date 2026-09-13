@@ -63,3 +63,6 @@ repo
 # File names
 Justfile
 frontmatter
+
+# Fork addition
+[Rr]ebas(?:e|ed|es|ing)

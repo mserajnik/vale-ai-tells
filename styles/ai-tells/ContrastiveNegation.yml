@@ -17,6 +17,6 @@ exceptions:
   - "no sooner"
 tokens:
   # Stacked: "no X, no Y[, no Z]"
-  - "\\bno [^,.;:!?]{2,}, no [^.!?]+"
+  - "\\bno\\s+[^,.;:!?]{2,},\\s+no\\s+[^.!?]+"
   # Single clause-final fragment: "..., no <noun phrase>."
-  - ", no [a-z][^.!?,;:]*[.!?]"
+  - ",\\s+no\\s+[a-z][^.!?,;:]*[.!?]"

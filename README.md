@@ -9,6 +9,16 @@ This package targets **technical documentation**, where clarity and directness m
 > The author created this package to help clean up AI-assisted technical documentation, not to disguise AI-generated content as human-written.
 <!-- vale proselint.Annotations = YES -->
 
+<!-- vale proselint.Annotations = NO -->
+> [!NOTE]
+> This is a personal fork of
+> [tbhb/vale-ai-tells](https://github.com/tbhb/vale-ai-tells). Its default
+> `customizations` branch adds rules and changes that upstream would probably
+> not want. The branch is rebased onto upstream from time to time. The rule
+> count and the rule tables stay as upstream wrote them, so neither one names
+> what this branch adds, which keeps the difference from upstream small.
+<!-- vale proselint.Annotations = YES -->
+
 [![linted with vale-ai-tells](https://img.shields.io/badge/linted%20with-vale--ai--tells-blue)](https://github.com/tbhb/vale-ai-tells)
 
 ## Installation

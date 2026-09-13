@@ -1,0 +1,14 @@
+---
+extends: existence
+message: "Self-rated evidence: '%s'. State what the evidence supports."
+link: https://github.com/mserajnik/vale-ai-tells
+level: error
+ignorecase: true
+nonword: true
+# Ranking your own findings for the reader. "the key takeaway" is left
+# out, because `AffirmativeFormulas` and `StructureAnnouncements` already
+# match it.
+tokens:
+  - 'the\s+dominant\s+\w+'
+  - 'the\s+key\s+finding'
+  - 'the\s+standout\s+\w+'

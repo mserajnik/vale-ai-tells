@@ -1,0 +1,51 @@
+---
+# Publishes the `customizations` branch as a rolling `latest` release, so a
+# consumer can pin one URL.
+
+name: rolling release
+
+on:
+  push:
+    branches:
+      - customizations
+
+permissions:
+  contents: read
+
+# See `ci.yml`: without this a pin can move without its lockfile entry.
+env:
+  MISE_LOCKED: "1"
+
+jobs:
+  release:
+    name: rolling release
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Harden the runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up the toolchain
+        uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
+
+      - name: Build the packages
+        run: mise run build-package
+
+      - name: Replace the rolling release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest --cleanup-tag --yes || true
+          gh release create latest \
+            ai-tells.zip ai-tells-commits.zip ai-tells-experimental.zip \
+            --target "$GITHUB_SHA" \
+            --title latest \
+            --notes 'Rolling release built from the tip of customizations.'

@@ -1,12 +1,13 @@
 ---
 extends: existence
-message: "AI punctuation: '%s'. Backtick it if it is a CLI flag or literal, or use a real em dash for punctuation."
+message: "AI punctuation: '%s'. Replace it with a comma, a colon or a period."
 level: error
 nonword: true
 # Split from EmDashUsage: a literal double hyphen is the ASCII em-dash
 # stand-in AI reaches for when it cannot type the character. The two real
-# fixes differ from the em-dash rule's (comma/period/parens), so it carries
-# its own message: backtick CLI flags or literal double hyphens, or promote
-# genuine punctuation to a real em dash character.
+# fixes differ from the em-dash rule's (comma/period/parens), so it
+# carries its own message. The lookahead drops a CLI flag, which is no
+# stand-in for anything: Vale honors a code span in Markdown and reads
+# none in a source comment, so a backticked flag reaches the rule there.
 tokens:
-  - '--'
+  - '--(?![A-Za-z0-9])'
